@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from './link';
 
 export default class ListTodo extends Component{
     constructor(props){
@@ -6,16 +7,17 @@ export default class ListTodo extends Component{
     }
 
     renderList(){
-        const {items} = this.props.items
-        console.log(items);
+        const {items} = this.props
+        // console.log(items);
         return(
             <ul>
             {
-                items.map(item => {
+                items.filter(item => item.status != "deleted").map(item => {
                     return(
-                        <li key={item.id}>{item.value}</li>
-                    )
-                    // console.log(item.value);
+                        <li key={item.id}>
+                            <Link name={item.value} id={item.id} status={item.status}/>                        
+                        </li>
+                    )                    
                 })
             }
             </ul>

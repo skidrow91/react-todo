@@ -7,6 +7,18 @@ export function toDo(todo){
     }
 }
 
-// export function listTodo(){
-//
-// }
+export function handleStatus(id, status){
+	return {
+		type: "HANDLE_STATUS",
+		id,
+		status
+	}
+}
+
+export function visibleTodo(status){
+	// alert(status);
+	return {
+		type: "VISIBLE_TODO",
+		status
+	}
+}
