@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {toDo} from '../actions/index';
 import ListTodo from './listTodo';
 import VisibleTodo from './visibleTodo';
+import { Grid, Row, Col, Button, ButtonToolbar, FormControl } from 'react-bootstrap';
 
 class addTodo extends Component{
 
@@ -21,10 +22,18 @@ class addTodo extends Component{
 
     render(){        
         return (
-            <div>
-                <input ref="todo" onChange={event => this.setState({todo: event.target.value})}/>
-                <button onClick={this.handleClick.bind(this)}>Add</button>                            
-            </div>
+            <Grid>                                
+                <Row>
+                    <Col xs={8} md={5}>                        
+                        <FormControl type="text" ref="todo" placeholder="Enter text" onChange={event => this.setState({todo: event.target.value})} />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <ButtonToolbar>                        
+                            <Button bsStyle="xsmall" onClick={this.handleClick.bind(this)}>Add</Button>
+                        </ButtonToolbar>    
+                    </Col>
+                </Row>
+            </Grid>        
         )
     }
 }
