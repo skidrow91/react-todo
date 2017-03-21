@@ -1,6 +1,5 @@
 
-export function toDo(todo){
-    // console.log(todo);
+export function toDo(todo){    
     return {
         type: "ADD_TO_DO",
         item:  todo
@@ -15,8 +14,7 @@ export function handleStatus(id, status){
 	}
 }
 
-export function visibleTodo(status){
-	// alert(status);
+export function visibleTodo(status){	
 	return {
 		type: "VISIBLE_TODO",
 		status

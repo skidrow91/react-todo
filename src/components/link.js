@@ -27,9 +27,7 @@ class Link extends Component{
     	return false;
     }  
 
-	render(){
-		//console.log(this.props.name);
-		// this.loadImage();
+	render(){		
 		return (
 			<div>
 				<input type="checkbox" onChange={this.handleCompleted.bind(this)} checked={this.isCompleted()}/>
@@ -43,12 +41,6 @@ class Link extends Component{
 		)
 	}
 }
-
-// function mapStateToProps(state){	
-// 	return {
-// 		state
-// 	}
-// }
 
 function mapDispatchToProps(dispatch){
 	return {

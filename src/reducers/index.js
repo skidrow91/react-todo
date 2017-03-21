@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 let i = 0;
 let initState = {
     item: {
-        status: "open",
+        status: "all",
         items: []
     }    
 }
@@ -16,9 +16,7 @@ function itemTodo(action){
     }
 }
 
-function setTodo(state, action){
-    // console.log(state);
-    // console.log(action);
+function setTodo(state, action){    
     if(state.id != action.id){
         return state;
     }
@@ -26,31 +24,10 @@ function setTodo(state, action){
     return state;
 }
 
-function visibleTodo(state, action){
-    // console.log(state);
-    // console.log(action);
-    if(action.status == "completed")
-        return state.filter(item => item.status == "completed");
-    return state;
-}
-
-export function items(state = initState, action) {
-    // console.log(action);
-    // console.log(state);
+export function items(state = initState, action) {    
     let stateReturn = {};
     switch (action.type) {
-        case 'ADD_TO_DO':
-            // return [
-            //     ...state,
-            //     itemTodo(action)
-            // ];
-            // let items = itemTodo(action);
-            // if(state.items.length > 0){
-            //     let items = [
-            //         ...state.items,
-            //         itemTodo(action)
-            //     ]                    
-            // }
+        case 'ADD_TO_DO':            
             stateReturn = {
                 item: {
                     status: "all",
@@ -59,27 +36,27 @@ export function items(state = initState, action) {
                         itemTodo(action)
                     ]                 
                 }  
-            }
-            // console.log(stateReturn);
+            }            
             return stateReturn;
-        case 'HANDLE_STATUS':
-            // stateReturn = state.map(item =>
-            //                 setTodo(item, action)
-            //             );
+        case 'HANDLE_STATUS':            
             stateReturn = {
                 item: {
-                    status: "all",
+                    status: state.item.status,
                     items: state.item.items.map(item =>
                             setTodo(item, action)
                         )
                 }  
-            }
-            // console.log(stateReturn);
+            }            
             return stateReturn
-        // case 'VISIBLE_TODO':
-        //     console.log(state);
-        //     return state;
-        default:
+        case 'VISIBLE_TODO':                            
+            stateReturn = {
+                item: {
+                    status: action.status,
+                    items: state.item.items
+                }  
+            }            
+            return stateReturn;
+        default:            
             return state;
     }
 }

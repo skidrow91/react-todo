@@ -3,20 +3,18 @@ import {connect} from "react-redux";
 import {visibleTodo} from "../actions/index";
 
 class VisibleTodo extends Component{
-	constructor(props, dispatch){
+	constructor(props){
 		super(props);
 	}
 
-	handleClick(status){
-		// console.log(status);
-		// this.props.filterTodo(status);
-		this.props.dispatch(visibleTodo(status));
+	handleClick(status){		
+		this.props.filterTodo(status);		
 	}
 
 	render(){
 		return (
 			<div>
-				<a href="javascript:void(0)" onClick={this.handleClick.bind(this, "completed")}>All</a>
+				<a href="javascript:void(0)" onClick={this.handleClick.bind(this, "all")}>All</a>
 				<a href="javascript:void(0)" onClick={this.handleClick.bind(this, "open")}>Open</a>
 				<a href="javascript:void(0)" onClick={this.handleClick.bind(this, "completed")}>Completed</a>
 			</div>
@@ -30,4 +28,4 @@ function mapDispatchToProps(dispatch){
 	}
 }
 
-export default connect()(VisibleTodo);
+export default connect(null, mapDispatchToProps)(VisibleTodo);
